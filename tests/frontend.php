@@ -16,7 +16,8 @@ preg_match_all('/\$\(\x27([^\x27]+)\x27\)/', $javascript, $references);
 foreach (array_unique($references[1]) as $id) {
     check(in_array($id, $matches[1], true), "JavaScript element $id must exist in the PHP page");
 }
-check(str_contains($javascript, "fetch('/api/sensors.php'"), 'Browser must call the public PHP API directly');
+check(str_contains($javascript, "fetch('api/sensors.php'"), 'Browser must call the public PHP API relative to the dashboard');
+check(!preg_match('/(?:src|href)="\//', $html), 'Frontend asset and navigation URLs must be relative for subdirectory hosting');
 check(!preg_match('/(?:src|href)="https?:\/\//', $html), 'Frontend must not depend on external assets');
 check(!is_file(__DIR__ . '/../public/config.local.ini'), 'Private config must remain outside the document root');
 echo "Passed frontend page, asset, DOM reference and routing checks.\n";

@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Live home temperature, motion and ambient light monitoring.">
 <title>Home Temperature</title>
-<script src="/assets/theme.js"></script>
-<link rel="stylesheet" href="/assets/dashboard.css">
-<script src="/assets/dashboard.js" defer></script>
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/dashboard.css">
+<script src="assets/dashboard.js" defer></script>
 </head>
 <body>
 <div class="app-shell"><main>
-<header class="topbar"><a class="brand" href="/" aria-label="Home"><span class="brand-icon" data-icon="home"></span><span>Home</span></a><label class="theme-toggle"><span>Dark mode</span><input type="checkbox" id="dark-mode" role="switch" aria-label="Dark mode"><span class="theme-track" aria-hidden="true"></span></label></header>
+<header class="topbar"><a class="brand" href="./" aria-label="Home"><span class="brand-icon" data-icon="home"></span><span>Home</span></a><label class="theme-toggle"><span>Dark mode</span><input type="checkbox" id="dark-mode" role="switch" aria-label="Dark mode"><span class="theme-track" aria-hidden="true"></span></label></header>
 <div class="page-content">
 <noscript><p class="error-banner">Enable JavaScript to load live sensor readings.</p></noscript>
 <div id="error-banner" class="error-banner" role="alert" hidden><span><strong>Let’s get your home connected.</strong> <span id="error-message"></span></span><button data-demo="on">Explore demo ↗</button></div>

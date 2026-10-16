@@ -123,7 +123,7 @@
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
     try {
-      const response = await fetch('/api/sensors.php', { cache: 'no-store', signal: controller.signal });
+      const response = await fetch('api/sensors.php', { cache: 'no-store', signal: controller.signal });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Unable to read sensors.');
       if (!Array.isArray(result.sensors) || !result.sensors.every(s => s && typeof s.id === 'string' && typeof s.name === 'string') || !Number.isFinite(Date.parse(result.updatedAt))) throw new Error('The sensor API returned an invalid response.');

@@ -18,13 +18,13 @@ Open http://localhost:3555. This single PHP server serves both `/` and `/api/sen
 
 Keep bridge credentials in the ignored root-level `config.local.ini`, outside the `public/` document root. For a fresh checkout, copy `config.example.ini` to `config.local.ini` and fill in the local credentials. Alternatively set `HUE_BRIDGE_URL` (bridge origin without `/api`) and `HUE_USERNAME` in the PHP environment; environment variables take precedence. Never put credentials in public assets.
 
-For production, configure your PHP-capable web server with this repository's `public/` directory as its document root. No URL rewrite or proxy configuration is required. Keep the dashboard on your trusted home network; add authentication before exposing it externally.
+For production, configure your PHP-capable web server with this repository's `public/` directory as its document root. The dashboard can also be mounted under a subdirectory, such as `/hue/`; asset, navigation and browser API URLs are relative to the dashboard directory. Use the directory URL with a trailing slash (or its `index.php`). No URL rewrite or proxy configuration is required. Keep the dashboard on your trusted home network; add authentication before exposing it externally.
 
 ## Behavior
 
 The API queries the Hue v1 sensors endpoint. Presence, temperature and light resources are grouped by device MAC even when endpoint numbers differ. Disabled motion sensors are excluded. Enabled offline sensors remain visible; their current temperature and light readings are shown as unavailable. Temperature is converted from hundredths of a degree to Celsius. The average includes only reachable, enabled sensors with valid temperature readings.
 
-The browser polls `/api/sensors.php` every 15 seconds and updates readings in place without reloading the page. Manual refresh uses the same request; search, filters, scroll position and open sensor details are preserved. Failed requests keep the last successful snapshot with an explicit stale-data warning. Demo mode is opt-in and never substitutes sample readings for a failed live request. Lux uses a labeled logarithmic scale. Motion reflects the current presence state; no event or temperature history is stored. The summary illustration is decorative.
+The browser polls `api/sensors.php` relative to the dashboard directory every 15 seconds and updates readings in place without reloading the page. Manual refresh uses the same request; search, filters, scroll position and open sensor details are preserved. Failed requests keep the last successful snapshot with an explicit stale-data warning. Demo mode is opt-in and never substitutes sample readings for a failed live request. Lux uses a labeled logarithmic scale. Motion reflects the current presence state; no event or temperature history is stored. The summary illustration is decorative.
 
 ## Validation
 
